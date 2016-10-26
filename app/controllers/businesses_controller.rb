@@ -3,7 +3,7 @@ require 'net/https'
 
 class BusinessesController < ApplicationController
   def index
-  	if params[:googl_api_key].present? && params[:lat].present? && params[:lng].present? && params[:keyword].present?
+  	if params[:googl_api_key].present? && params[:lat].present? && params[:lng].present?
   		@output = search_business(params[:googl_api_key], params[:output_type], params[:lat], params[:lng] , params[:keyword])
   	end
   end
