@@ -1,0 +1,34 @@
+<div class="authform">
+  <%= form_tag(businesses_path, method: :get, html: {  role: 'form'}) do %>
+    <h3>searchBusiness up</h3>
+    
+    <div class="form-group">
+      <label> Googl API Key </label>
+      <%= text_field_tag :googl_api_key, "AIzaSyA3LRoMbxRPwmMY725sH5QlyluGgMvWmAo",:autofocus => true, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label> Output Type </label>
+      <%=select_tag :output_type, options_for_select(["json", "xml"]), class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label> lat </label>
+      <%= text_field_tag :lat, "",class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label> lng </label>
+      <%= text_field_tag :lng, "",class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label> keyword </label>
+      <%= text_field_tag :keyword, "",class: 'form-control' %>
+    </div>
+    
+     <%=submit_tag 'Search', :class => 'button right' %>
+  <% end %>
+</div>
+<h3>
+Output
+</h3>
+<%= @output %>
+
