@@ -1,25 +1,37 @@
 <div class="authform">
   <%= form_tag(businesses_path, method: :get, html: {  role: 'form'}) do %>
-    <h3>searchBusiness up</h3>
+    <h3>Search Business up</h3>
     
     <div class="form-group">
-      <label> Googl API Key </label>
-      <%= text_field_tag :googl_api_key, "AIzaSyA3LRoMbxRPwmMY725sH5QlyluGgMvWmAo",:autofocus => true, class: 'form-control' %>
+      <label> Search Type </label>
+      <%=select_tag :type, options_for_select(["Address", "Business"]), class: 'form-control',  id:'search-type'%>
     </div>
+
+    <div class="form-group">
+      <label> Googl API Key </label>
+      <%= text_field_tag :googl_api_key, "AIzaSyADZOp2jbnLd0UTXERo5xDMeLJp45XKLk4",:autofocus => true, class: 'form-control' %>
+    </div>
+
     <div class="form-group">
       <label> Output Type </label>
       <%=select_tag :output_type, options_for_select(["json", "xml"]), class: 'form-control' %>
     </div>
-    <div class="form-group">
+
+    <div class="address form-group">
+      <label> Address </label>
+      <%= text_field_tag :address, "",class: 'form-control' %>
+    </div>
+
+    <div class="business form-group">
       <label> lat </label>
       <%= text_field_tag :lat, "",class: 'form-control' %>
     </div>
-    <div class="form-group">
+    <div class="business form-group">
       <label> lng </label>
       <%= text_field_tag :lng, "",class: 'form-control' %>
     </div>
 
-    <div class="form-group">
+    <div class="business form-group">
       <label> keyword </label>
       <%= text_field_tag :keyword, "",class: 'form-control' %>
     </div>
