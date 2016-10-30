@@ -7,20 +7,22 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 group :development, :test do
-#  gem 'debugger'
+  #  gem 'debugger'
   gem 'byebug'
+  gem 'pry-rails'
 end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
+gem 'annotate'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'high_voltage'
 gem 'thin'
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19]
+  gem 'binding_of_caller', platforms: [:mri_19]
   gem 'rails_layout'
   gem 'spring-commands-rspec'
 end
