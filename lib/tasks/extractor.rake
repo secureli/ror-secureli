@@ -27,11 +27,30 @@ namespace :extractor do
       puts 
       json = JSON.parse(results)
       json['results'].each do |r|
-        Address.create!(address: add, lat: r['geometry']['bounds']['northeast']['lat'] ,lng: r['geometry']['bounds']['northeast']['lng'] ) if r['geometry']['bounds'].present?
-        Address.create!(address: add, lat: r['geometry']['bounds']['southwest']['lat'] ,lng: r['geometry']['bounds']['southwest']['lng'] ) if r['geometry']['bounds'].present?
-        Address.create!(address: add, lat: r['geometry']['location']['lat'] ,lng: r['geometry']['location']['lng'] )
-        Address.create!(address: add, lat: r['geometry']['viewport']['northeast']['lat'] ,lng: r['geometry']['viewport']['northeast']['lng'] )
-        Address.create!(address: add, lat: r['geometry']['viewport']['southwest']['lat'] ,lng: r['geometry']['viewport']['southwest']['lng'] )
+        if r['geometry']['bounds'].present? && !Address.where(address: add, lat: r['geometry']['bounds']['northeast']['lat'] ,lng: r['geometry']['bounds']['northeast']['lng'] ).present?
+          Address.create!(address: add, lat: r['geometry']['bounds']['northeast']['lat'] ,lng: r['geometry']['bounds']['northeast']['lng'] )
+          puts 'added record'
+        end
+
+        if r['geometry']['bounds'].present? && !Address.where(address: add, lat: r['geometry']['bounds']['southwest']['lat'] ,lng: r['geometry']['bounds']['southwest']['lng'] ).present?
+          Address.create!(address: add, lat: r['geometry']['bounds']['southwest']['lat'] ,lng: r['geometry']['bounds']['southwest']['lng'] )
+          puts 'added record'
+        end
+
+        unless Address.where(address: add, lat: r['geometry']['location']['lat'] ,lng: r['geometry']['location']['lng'] ).present?
+          Address.create!(address: add, lat: r['geometry']['location']['lat'] ,lng: r['geometry']['location']['lng'] )
+          puts 'added record'
+        end
+
+        unless Address.where(address: add, lat: r['geometry']['viewport']['northeast']['lat'] ,lng: r['geometry']['viewport']['northeast']['lng'] ).present?
+          Address.create!(address: add, lat: r['geometry']['viewport']['northeast']['lat'] ,lng: r['geometry']['viewport']['northeast']['lng'] )
+          puts 'added record'
+        end
+
+        unless Address.create!(address: add, lat: r['geometry']['viewport']['southwest']['lat'] ,lng: r['geometry']['viewport']['southwest']['lng'] ).present?
+          Address.create!(address: add, lat: r['geometry']['viewport']['southwest']['lat'] ,lng: r['geometry']['viewport']['southwest']['lng'] )
+          puts 'added record'
+        end
       end
     end
   } 
