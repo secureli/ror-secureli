@@ -20,6 +20,9 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'high_voltage'
 gem 'thin'
+gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
+gem 'zip-zip' # will load compatibility for old rubyzip API.
+gem 'whenever', :require => false
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', platforms: [:mri_19]
