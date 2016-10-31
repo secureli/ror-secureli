@@ -26,7 +26,7 @@ task :alexa_top_sites => :environment do
 
 	#Importing Data
 	csv_text = File.read("#{Rails.root}/public/#{unzipped_file.first[1].name}")
-	csv = CSV.parse(csv_text, :headers => true)
+	csv = CSV.parse(csv_text)
 	csv.each do |row|
 		begin
 			next if AlexaTopSite.find_by(domain: row[1]).present?
