@@ -17,11 +17,12 @@ task :alexa_top_sites => :environment do
   #Unzip the downloaded file
 	unzipped_file = Zip::File.open(file) do |zip_file|
 		zip_file.each do |f|
-			f_path = File.join("#{Rails.root}", f.name)
+			f_path = File.join("#{Rails.root}/public", f.name)
 			FileUtils.mkdir_p(File.dirname(f_path))
 			f.extract(f_path) 
 		end
 	end
+	puts "File unzipped and added to public folder successfully"
 
 	#Importing Data
 	csv_text = File.read("#{Rails.root}/public/#{unzipped_file.first[1].name}")
